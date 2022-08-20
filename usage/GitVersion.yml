@@ -1,0 +1,45 @@
+assembly-versioning-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource}'
+mode: Mainline
+merge-message-formats: {}
+branches:
+  main:
+    regex: main
+    mode: ContinuousDelivery
+    tag: ''
+    increment: None
+  master:
+    regex: master
+    mode: ContinuousDelivery
+    tag: ''
+    increment: None
+  develop:
+    regex: develop$
+    mode: ContinuousDelivery
+    tag: dev
+    increment: None
+    is-source-branch-for: ['feature', 'feat', 'hotfix']
+    tracks-release-branches: false
+    prevent-increment-of-merged-branch-version: true
+  release:
+    regex: release[s]?[/-]
+    mode: ContinuousDelivery
+    tag: release
+    increment: None
+  feature:
+    regex: (feature[s]?[/-]|feat?[/-])
+    mode: ContinuousDelivery
+    tag: useBranchName
+    increment: None
+  pull-request:
+    regex: (pull|pull\-request[s]|pr)[/-]
+    mode: ContinuousDelivery
+    tag: PullRequest
+    increment: Inherit
+    prevent-increment-of-merged-branch-version: true
+    tag-number-pattern: '[/-](?<number>\d+)[-/]'
+  hotfix:
+    regex: bugfix(es)?[/-]
+    mode: ContinuousDelivery
+    tag: useBranchName
+    increment: None
+    prevent-increment-of-merged-branch-version: true

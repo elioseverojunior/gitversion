@@ -1,0 +1,17 @@
+FROM elioseverojunior/gitversion:latest
+
+LABEL maintainer="Elio Severo Junior"
+LABEL contact="elioseverojunior@gmail.com"
+LABEL description="Docker DotNet GitVersion"
+
+ENV BRANCH_NAME=""
+
+COPY setversion.sh /bin/setversion
+
+WORKDIR /pre-build
+
+COPY . .
+
+RUN ls -lha
+
+ENTRYPOINT [ "/bin/setversion" ]
